@@ -47,7 +47,13 @@ youtube-video-qa/
 ```
 
 ## Team
-Four-person team; tasks organized via GitHub Issues and Project Board.
+- [Kaiwei Hsu](https://github.com/hsu-github)
+
+- [Leonidas Fafoutis](https://github.com/LeoFafoutis)
+
+- [Noah Shaw](https://github.com/NoahShaw99)
+
+- [Rohan Dawkhar](https://github.com/sachelsout)
 
 ## How to Run
 Detailed setup instructions will be added as implementation progresses.
