@@ -12,7 +12,7 @@ This project builds a system that allows users to input a YouTube video URL and 
 - Error analysis and ethical considerations  
 - Optional web interface or Chrome extension
 
-![YouTube Video Q&A System Architecture](system_architecture.png)
+![YouTube Video Q&A System Architecture](docs/system_architecture.png)
 
 ## Project Goals
 - Compare baseline vs. LLM-based QA performance  
