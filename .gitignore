@@ -1,0 +1,36 @@
+# Data files
+src/data/raw/*.json
+src/data/processed/*.json
+
+# Keep the directory structure but not the files
+!src/data/raw/.gitkeep
+!src/data/processed/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+EOF
