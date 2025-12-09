@@ -4,8 +4,8 @@ Baseline QA system using keyword matching and TF-IDF retrieval.
 This module implements a simple question-answering system that retrieves
 relevant transcript chunks using TF-IDF vectorization and cosine similarity.
 
-python app.py process https://www.youtube.com/watch?v=VIDEO
-python src/qa/baseline_qa.py --video_id jG7dSXcfVqE_chunks --question "What is the main topic?" --transcript_dir src/data/processed
+python app.py process https://www.youtube.com/watch?v=VIDEOID
+python src/qa/baseline_qa.py --video_id VIDEOID_chunks --question "Question?" --transcript_dir src/data/processed
 """
 
 import argparse
