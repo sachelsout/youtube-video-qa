@@ -1,0 +1,118 @@
+{
+  "3MqYE2UuN24": {
+    "questions": [
+      {
+        "q": "Should you walk or run in the rain?",
+        "a": "You should run in the rain. Running minimizes the time you spend in the rain, which reduces your total wetness."
+      },
+      {
+        "q": "What is the formula for total wetness?",
+        "a": "Total wetness equals (wetness per second times time spent in rain) plus (wetness per meter times meters travelled)."
+      },
+      {
+        "q": "When will you stay the driest?",
+        "a": "When standing still."
+      },
+      {
+        "q": "Why does time matter more than speed?",
+        "a": "Because the rain hitting you from above is constant per unit of time. The less time you spend in the rain, the less water hits you from above."
+      },
+      {
+        "q": "What analogy is used to explain the side rain?",
+        "a": "A snowplough analogy."
+      },
+      {
+        "q": "Does the volume of a parallelepiped depend on its slant?",
+        "a": "No, the volume of a parallelepiped does not depend on its slant."
+      },
+      {
+        "q": "What happens when you move out of the way of one raindrop?",
+        "a": "You move into the way of another raindrop."
+      }
+    ]
+  },
+  "9eKc5kgPVrA": {
+    "questions": [
+      {
+        "q": "What happens when an unstoppable force meets an immovable object?",
+        "a": "According to relativity and physics, they are actually the same thing viewed from different reference frames, and they would pass through each other without interaction."
+      },
+      {
+        "q": "What is the principle of relativity?",
+        "a": "Because of relativity. There is no preferred frame of reference - if you move relative to an object, from your perspective the object is moving. Movement depends on the observer's perspective."
+      },
+      {
+        "q": "What is Newton's second law mentioned in the video?",
+        "a": "Force equals mass times acceleration F=MA. An object's acceleration equals the total force divided by its mass."
+      },
+      {
+        "q": "How much mass does an un-acceleratable object have?",
+        "a": "An un-acceleratable object would have infinite mass."
+      },
+      {
+        "q": "Are unstoppable forces and immovable objects the same?",
+        "a": "Yes, they are the same thing viewed from different reference frames. Both are objects that cannot be accelerated."
+      },
+      {
+        "q": "What does relativity clearly tell us about immovable objects?",
+        "a": "The principle of relativity tells us there is no such thing as an immovable object."
+      }
+    ]
+  },
+  "S9dqJRyk0YM": {
+    "questions": [
+      {
+        "q": "Why is pink not a real color?",
+        "a": "Pink or magenta doesn't exist in the visible light spectrum. It's a mix of red and blue light."
+      },
+      {
+        "q": "What colors are in the visible spectrum?",
+        "a": "The visible spectrum contains red, orange, yellow, green, blue, indigo, and violet."
+      },
+      {
+        "q": "If you roll up the color where, what is between red and violet?",
+        "a": "A gap."
+      },
+      {
+        "q": "Why should pink be called minus-green?",
+        "a": "Because pink is what happens when you take white light and take out the green."
+      },
+      {
+        "q": "What should pink be called?",
+        "a": "Pink should be called minus-green."
+      }
+    ]
+  },
+  "pgqkti7yePk": {
+    "questions": [
+      {
+        "q": "How many blades do the vast majority of modern windmills have?",
+        "a": "The vast majority of modern windmills have three blades."
+      },
+      {
+        "q": "Where does the first reason come from?",
+        "a": "The first reason comes from physics."
+      },
+      {
+        "q": "What does adding more blades to a windmill do?",
+        "a": "Adding more blades allows the windmill to generate more torque, but also increases drag."
+      },
+      {
+        "q": "What speeds do many bladed windmills work better at?",
+        "a": "Many bladed windmills work better at lower rotational speeds."
+      },
+      {
+        "q": "What speeds do fewer bladed windmills work better at?",
+        "a": "Fewer bladed windmills work better at higher rotational speeds."
+      },
+      {
+        "q": "What does having an odd number of blades do for windmills?",
+        "a": "Wind loads are more evenly distributed across the face of the rotor, bending forces are reduced as a result."
+      },
+      {
+        "q": "Why Do Wind Turbines Have Three Blades?",
+        "a": "Physics says that three blade rotors are most efficient, engineering says that for the same cost, three blades are less likely to brake than 2 blades, and human comfort says are not noisy."
+      }
+    ]
+  }
+}
