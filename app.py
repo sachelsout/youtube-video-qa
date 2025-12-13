@@ -8,12 +8,18 @@ os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 import sys
 import json
 from pathlib import Path
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 import argparse
 
 from src.data.get_transcript import get_transcript, save_transcript
 from src.preprocessing.preprocess import preprocess_transcript
-from src.retrieval.embedding_model import embed_video
+from src.retrieval.embedding_model import embed_video, load_embedding_model
+from src.retrieval.retrieval import (
+    retrieve_top_k_from_video,
+    retrieve_top_k_multi_video,
+    format_retrieval_results,
+    filter_by_threshold
+)
 
 
 # ----------------------------------------------------------
@@ -37,20 +43,31 @@ def is_music_video(transcript_segments: list) -> bool:
     return False
 
 
-
 class YouTubeQASystem:
     """Main application class for YouTube Video Q&A."""
     
     def __init__(
         self,
         raw_dir: str = "src/data/raw",
-        processed_dir: str = "src/data/processed"
+        processed_dir: str = "src/data/processed",
+        embeddings_dir: str = "src/data/embeddings"
     ):
         self.raw_dir = Path(raw_dir)
         self.processed_dir = Path(processed_dir)
+        self.embeddings_dir = Path(embeddings_dir)
 
         self.raw_dir.mkdir(parents=True, exist_ok=True)
         self.processed_dir.mkdir(parents=True, exist_ok=True)
+        self.embeddings_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Lazy load embedding model
+        self._embedding_model = None
+    
+    def _get_embedding_model(self):
+        """Lazy load embedding model."""
+        if self._embedding_model is None:
+            self._embedding_model = load_embedding_model()
+        return self._embedding_model
     
     def process_video(
         self,
@@ -148,10 +165,6 @@ class YouTubeQASystem:
             result['preprocessing_metadata'] = preprocessing_result.get('metadata', {})
             result['steps_completed'].append('preprocessing')
 
-            # Placeholder for future stages
-            print("\n⏳ Step 3: Retrieval system (coming soon)...")
-            print("\n⏳ Step 4: Q&A system (coming soon)...")
-
             result['status'] = 'success'
 
             print(f"\n{'='*60}")
@@ -160,6 +173,7 @@ class YouTubeQASystem:
             print(f"\nVideo ID: {video_id}")
             print(f"Transcript: {result['transcript_path']}")
             print(f"Chunks: {result['chunks_path']}")
+            print(f"\n💡 Next: Run 'python app.py embed {video_id}' to enable Q&A")
 
             return result
 
@@ -168,40 +182,162 @@ class YouTubeQASystem:
             print(f"\n❌ Error: {e}")
             return result
     
-
-    def ask_question(self, video_id: str, question: str) -> Dict:
-        chunks_path = self.processed_dir / f"{video_id}_chunks.json"
+    def ask_question(
+        self,
+        video_id: str,
+        question: str,
+        k: int = 5,
+        threshold: Optional[float] = None,
+        show_sources: bool = True
+    ) -> Dict:
+        """
+        Ask a question about a video using retrieval.
         
-        if not chunks_path.exists():
+        Args:
+            video_id: YouTube video ID
+            question: Question to ask
+            k: Number of chunks to retrieve
+            threshold: Minimum similarity threshold (optional)
+            show_sources: Whether to display source chunks
+            
+        Returns:
+            Dictionary with status, question, retrieved chunks, and answer
+        """
+        result = {
+            'status': 'error',
+            'question': question,
+            'video_id': video_id,
+            'retrieved_chunks': [],
+            'answer': None,
+            'error': None
+        }
+        
+        try:
+            # Load embedding model
+            model = self._get_embedding_model()
+            embed_fn = lambda text: model.encode([text])[0]
+            
+            # Retrieve relevant chunks
+            print(f"\n🔍 Searching for: '{question}'")
+            print(f"   Looking in video: {video_id}")
+            
+            chunks = retrieve_top_k_from_video(
+                question=question,
+                video_id=video_id,
+                k=k,
+                data_dir=str(self.processed_dir),
+                embeddings_dir=str(self.embeddings_dir),
+                embed_function=embed_fn
+            )
+            
+            # Apply threshold if specified
+            if threshold is not None:
+                chunks = filter_by_threshold(chunks, threshold)
+            
+            result['retrieved_chunks'] = chunks
+            result['status'] = 'success'
+            
+            # Format answer (simple concatenation for now)
+            if chunks:
+                context = "\n\n".join([
+                    f"[{c['start_time']:.1f}s]: {c['text']}"
+                    for c in chunks
+                ])
+                result['answer'] = context
+                
+                if show_sources:
+                    print(f"\n✓ Found {len(chunks)} relevant chunks:")
+                    print(format_retrieval_results(chunks))
+            else:
+                result['answer'] = "No relevant information found."
+                print("\n⚠️  No relevant chunks found.")
+            
+            return result
+            
+        except FileNotFoundError as e:
+            result['error'] = str(e)
+            print(f"\n❌ Error: {e}")
+            return result
+        except Exception as e:
+            result['error'] = str(e)
+            print(f"\n❌ Unexpected error: {e}")
+            return result
+    
+    def ask_multi_video(
+        self,
+        video_ids: List[str],
+        question: str,
+        k: int = 5,
+        threshold: Optional[float] = None
+    ) -> Dict:
+        """
+        Ask a question across multiple videos.
+        
+        Args:
+            video_ids: List of YouTube video IDs to search
+            question: Question to ask
+            k: Total number of chunks to retrieve
+            threshold: Minimum similarity threshold (optional)
+            
+        Returns:
+            Dictionary with results
+        """
+        try:
+            # Load embedding model
+            model = self._get_embedding_model()
+            embed_fn = lambda text: model.encode([text])[0]
+            
+            print(f"\n🔍 Searching across {len(video_ids)} videos...")
+            
+            chunks = retrieve_top_k_multi_video(
+                question=question,
+                video_ids=video_ids,
+                k=k,
+                data_dir=str(self.processed_dir),
+                embeddings_dir=str(self.embeddings_dir),
+                embed_function=embed_fn
+            )
+            
+            # Apply threshold if specified
+            if threshold is not None:
+                chunks = filter_by_threshold(chunks, threshold)
+            
+            if chunks:
+                print(f"\n✓ Found {len(chunks)} relevant chunks:")
+                print(format_retrieval_results(chunks))
+            else:
+                print("\n⚠️  No relevant chunks found.")
+            
+            return {
+                'status': 'success',
+                'question': question,
+                'video_ids': video_ids,
+                'retrieved_chunks': chunks
+            }
+            
+        except Exception as e:
+            print(f"\n❌ Error: {e}")
             return {
                 'status': 'error',
-                'error': f'No processed data found for video {video_id}. Run process_video first.'
+                'error': str(e)
             }
-
-        with open(chunks_path, 'r') as f:
-            data = json.load(f)
-        
-        return {
-            'status': 'success',
-            'question': question,
-            'answer': 'Q&A functionality coming in future issues!',
-            'method': 'placeholder',
-            'chunks_available': len(data.get('chunks', []))
-        }
     
-
     def list_processed_videos(self) -> list:
+        """List all processed videos with their status."""
         videos = []
         for transcript_file in self.raw_dir.glob("*.json"):
             video_id = transcript_file.stem
             chunks_file = self.processed_dir / f"{video_id}_chunks.json"
+            embeddings_file = self.embeddings_dir / f"{video_id}.npy"
+            
             videos.append({
                 'video_id': video_id,
                 'has_transcript': True,
-                'has_chunks': chunks_file.exists()
+                'has_chunks': chunks_file.exists(),
+                'has_embeddings': embeddings_file.exists(),
+                'ready_for_qa': chunks_file.exists() and embeddings_file.exists()
             })
         return videos
-
 
 
 def main():
@@ -219,12 +355,12 @@ Examples:
   # Generate embeddings only
   python app.py embed dQw4w9WgXcQ
   
-  # Custom settings
-  python app.py process dQw4w9WgXcQ --max-tokens 500 --force
-  python app.py embed dQw4w9WgXcQ --model all-mpnet-base-v2
-  
-  # Ask questions (placeholder)
+  # Ask questions (NOW WORKING!)
   python app.py ask dQw4w9WgXcQ "What is this video about?"
+  python app.py ask dQw4w9WgXcQ "machine learning" --k 10 --threshold 0.3
+  
+  # Search across multiple videos
+  python app.py search "artificial intelligence" video1 video2 video3
   
   # List all processed videos
   python app.py list
@@ -252,10 +388,27 @@ Examples:
     embed_parser.add_argument('--force', action='store_true',
                              help='Force regeneration of embeddings')
 
-    # Ask command
+    # Ask command (NOW WITH RETRIEVAL!)
     ask_parser = subparsers.add_parser('ask', help='Ask a question about a video')
-    ask_parser.add_argument('video_id')
-    ask_parser.add_argument('question')
+    ask_parser.add_argument('video_id', help='YouTube video ID')
+    ask_parser.add_argument('question', help='Question to ask')
+    ask_parser.add_argument('--k', type=int, default=5,
+                           help='Number of chunks to retrieve (default: 5)')
+    ask_parser.add_argument('--threshold', type=float, default=None,
+                           help='Minimum similarity threshold (0-1)')
+    ask_parser.add_argument('--no-sources', action='store_true',
+                           help='Hide source chunks')
+
+    # Search command (multi-video)
+    search_parser = subparsers.add_parser('search', 
+                                          help='Search across multiple videos')
+    search_parser.add_argument('question', help='Question to search for')
+    search_parser.add_argument('video_ids', nargs='+', 
+                              help='Video IDs to search')
+    search_parser.add_argument('--k', type=int, default=5,
+                              help='Total chunks to retrieve (default: 5)')
+    search_parser.add_argument('--threshold', type=float, default=None,
+                              help='Minimum similarity threshold (0-1)')
 
     # List command
     list_parser = subparsers.add_parser('list', help='List all processed videos')
@@ -310,13 +463,30 @@ Examples:
             sys.exit(1)
     
     elif args.command == 'ask':
-        result = qa_system.ask_question(args.video_id, args.question)
+        result = qa_system.ask_question(
+            video_id=args.video_id,
+            question=args.question,
+            k=args.k,
+            threshold=args.threshold,
+            show_sources=not args.no_sources
+        )
         
         print(f"\n{'='*60}")
         print(f"Question: {result['question']}")
         print(f"{'='*60}")
-        print(f"\nAnswer: {result['answer']}")
 
+        if result['status'] == 'error':
+            print(f"\n❌ Error: {result['error']}")
+            sys.exit(1)
+    
+    elif args.command == 'search':
+        result = qa_system.ask_multi_video(
+            video_ids=args.video_ids,
+            question=args.question,
+            k=args.k,
+            threshold=args.threshold
+        )
+        
         if result['status'] == 'error':
             print(f"\n❌ Error: {result['error']}")
             sys.exit(1)
@@ -332,7 +502,15 @@ Examples:
             print("No videos processed yet.")
         else:
             for video in videos:
-                status = "✓ Ready" if video['has_chunks'] else "⏳ Incomplete"
+                if video['ready_for_qa']:
+                    status = "✓ Ready for Q&A"
+                elif video['has_embeddings']:
+                    status = "⚠️  Has embeddings, missing chunks"
+                elif video['has_chunks']:
+                    status = "⏳ Needs embeddings (run: python app.py embed <id>)"
+                else:
+                    status = "⏳ Incomplete"
+                
                 print(f"{status} - {video['video_id']}")
         
         print()
