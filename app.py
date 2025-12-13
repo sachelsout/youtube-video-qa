@@ -3,6 +3,8 @@ YouTube Video Q&A System - Main Application
 Orchestrates the complete pipeline from transcript retrieval to Q&A.
 """
 
+import os
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 import sys
 import json
 from pathlib import Path
@@ -11,6 +13,7 @@ import argparse
 
 from src.data.get_transcript import get_transcript, save_transcript
 from src.preprocessing.preprocess import preprocess_transcript
+from src.retrieval.embedding_model import embed_video
 
 
 # ----------------------------------------------------------
@@ -207,10 +210,23 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  # Process video
   python app.py process https://www.youtube.com/watch?v=dQw4w9WgXcQ
-  python app.py process dQw4w9WgXcQ --max-tokens 500
-  python app.py process dQw4w9WgXcQ --force
+  
+  # Process and generate embeddings
+  python app.py process dQw4w9WgXcQ --embed
+  
+  # Generate embeddings only
+  python app.py embed dQw4w9WgXcQ
+  
+  # Custom settings
+  python app.py process dQw4w9WgXcQ --max-tokens 500 --force
+  python app.py embed dQw4w9WgXcQ --model all-mpnet-base-v2
+  
+  # Ask questions (placeholder)
   python app.py ask dQw4w9WgXcQ "What is this video about?"
+  
+  # List all processed videos
   python app.py list
         """
     )
@@ -222,20 +238,27 @@ Examples:
     process_parser.add_argument('video_url')
     process_parser.add_argument('--max-tokens', type=int, default=250)
     process_parser.add_argument('--overlap', type=int, default=50)
-
-    # merge_gap now optional — auto-detected if not provided
     process_parser.add_argument('--merge-gap', type=float, default=None,
                                 help='Override automatic merge_gap detection')
-
     process_parser.add_argument('--force', action='store_true')
+    process_parser.add_argument('--embed', action='store_true',
+                                help='Also generate embeddings after processing')
+
+    # Embed command
+    embed_parser = subparsers.add_parser('embed', help='Generate embeddings for a video')
+    embed_parser.add_argument('video_id', help='YouTube video ID')
+    embed_parser.add_argument('--model', default='all-MiniLM-L6-v2',
+                             help='Embedding model name (default: all-MiniLM-L6-v2)')
+    embed_parser.add_argument('--force', action='store_true',
+                             help='Force regeneration of embeddings')
 
     # Ask command
-    ask_parser = subparsers.add_parser('ask')
+    ask_parser = subparsers.add_parser('ask', help='Ask a question about a video')
     ask_parser.add_argument('video_id')
     ask_parser.add_argument('question')
 
     # List command
-    list_parser = subparsers.add_parser('list')
+    list_parser = subparsers.add_parser('list', help='List all processed videos')
     
     args = parser.parse_args()
     
@@ -250,13 +273,40 @@ Examples:
             video_url=args.video_url,
             max_tokens=args.max_tokens,
             overlap=args.overlap,
-            merge_gap=args.merge_gap,  # now auto-detected if None
+            merge_gap=args.merge_gap,
             force_redownload=args.force,
             force_reprocess=args.force
         )
 
         if result['status'] == 'error':
             print(f"\n❌ Error: {result['error']}")
+            sys.exit(1)
+        
+        # Generate embeddings if requested
+        if args.embed and result['video_id']:
+            print(f"\n{'='*60}")
+            print("📊 Step 3: Generating embeddings...")
+            print(f"{'='*60}")
+            try:
+                embed_video(
+                    video_id=result['video_id'],
+                    force=args.force
+                )
+            except Exception as e:
+                print(f"\n❌ Embedding error: {e}")
+                print("Note: Run 'pip install sentence-transformers' if not installed")
+    
+    elif args.command == 'embed':
+        # Standalone embed command
+        try:
+            embed_video(
+                video_id=args.video_id,
+                model_name=args.model,
+                force=args.force
+            )
+        except Exception as e:
+            print(f"\n❌ Error: {e}")
+            print("Note: Run 'pip install sentence-transformers' if not installed")
             sys.exit(1)
     
     elif args.command == 'ask':

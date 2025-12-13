@@ -1,10 +1,13 @@
 # Data files
 src/data/raw/*.json
 src/data/processed/*.json
+src/data/embeddings/*.json
+src/data/embeddings/*.npy
 
 # Keep the directory structure but not the files
 !src/data/raw/.gitkeep
 !src/data/processed/.gitkeep
+!src/data/embeddings/.gitkeep
 
 # Python
 __pycache__/
