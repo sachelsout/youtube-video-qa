@@ -14,12 +14,8 @@ import argparse
 from src.data.get_transcript import get_transcript, save_transcript
 from src.preprocessing.preprocess import preprocess_transcript
 from src.retrieval.embedding_model import embed_video, load_embedding_model
-from src.retrieval.retrieval import (
-    retrieve_top_k_from_video,
-    retrieve_top_k_multi_video,
-    format_retrieval_results,
-    filter_by_threshold
-)
+from src.retrieval.retrieval import retrieve_top_k_from_video, retrieve_top_k_multi_video, format_retrieval_results, filter_by_threshold
+from src.qa.llm_qa import generate_answer
 
 
 # ----------------------------------------------------------
@@ -188,10 +184,13 @@ class YouTubeQASystem:
         question: str,
         k: int = 5,
         threshold: Optional[float] = None,
-        show_sources: bool = True
+        show_sources: bool = False,
+        use_llm: bool = False,
+        llm_provider: str = "openrouter",
+        llm_model: Optional[str] = None
     ) -> Dict:
         """
-        Ask a question about a video using retrieval.
+        Ask a question about a video using retrieval and optionally LLM.
         
         Args:
             video_id: YouTube video ID
@@ -199,6 +198,9 @@ class YouTubeQASystem:
             k: Number of chunks to retrieve
             threshold: Minimum similarity threshold (optional)
             show_sources: Whether to display source chunks
+            use_llm: Whether to use LLM for answer generation
+            llm_provider: LLM provider ('openrouter', 'openai', 'anthropic', 'ollama')
+            llm_model: LLM model name (optional)
             
         Returns:
             Dictionary with status, question, retrieved chunks, and answer
@@ -237,8 +239,34 @@ class YouTubeQASystem:
             result['retrieved_chunks'] = chunks
             result['status'] = 'success'
             
-            # Format answer (simple concatenation for now)
-            if chunks:
+            # Generate LLM answer if requested
+            if use_llm and chunks:
+                print(f"\n🤖 Generating answer with {llm_provider}...")
+                
+                llm_result = generate_answer(
+                    question=question,
+                    retrieved_chunks=chunks,
+                    llm_provider=llm_provider,
+                    model=llm_model or ("google/gemini-2.0-flash-exp:free" if llm_provider == "openrouter" else "gpt-4o-mini")
+                )
+                
+                result['answer'] = llm_result['answer']
+                result['llm_model'] = llm_result['model']
+                result['llm_provider'] = llm_result['provider']
+                
+                print(f"\n{'='*60}")
+                print(f"Answer:")
+                print(f"{'='*60}")
+                print(f"\n{result['answer']}\n")
+                
+                if show_sources:
+                    print(f"{'='*60}")
+                    print(f"Sources:")
+                    print(f"{'='*60}")
+                    print(format_retrieval_results(chunks))
+            
+            # Simple concatenation answer if not using LLM
+            elif chunks:
                 context = "\n\n".join([
                     f"[{c['start_time']:.1f}s]: {c['text']}"
                     for c in chunks
@@ -398,6 +426,13 @@ Examples:
                            help='Minimum similarity threshold (0-1)')
     ask_parser.add_argument('--no-sources', action='store_true',
                            help='Hide source chunks')
+    ask_parser.add_argument('--llm', action='store_true',
+                           help='Use LLM to generate natural answer')
+    ask_parser.add_argument('--provider', default='openrouter',
+                           choices=['openrouter', 'openai', 'anthropic', 'ollama'],
+                           help='LLM provider (default: openrouter)')
+    ask_parser.add_argument('--model', default=None,
+                           help='LLM model name')
 
     # Search command (multi-video)
     search_parser = subparsers.add_parser('search', 
@@ -405,7 +440,7 @@ Examples:
     search_parser.add_argument('question', help='Question to search for')
     search_parser.add_argument('video_ids', nargs='+', 
                               help='Video IDs to search')
-    search_parser.add_argument('--k', type=int, default=5,
+    search_parser.add_argument('--k', type=int, default=15,
                               help='Total chunks to retrieve (default: 5)')
     search_parser.add_argument('--threshold', type=float, default=None,
                               help='Minimum similarity threshold (0-1)')
@@ -468,12 +503,19 @@ Examples:
             question=args.question,
             k=args.k,
             threshold=args.threshold,
-            show_sources=not args.no_sources
+            show_sources=not args.no_sources,
+            use_llm=args.llm,
+            llm_provider=args.provider,
+            llm_model=args.model
         )
         
         print(f"\n{'='*60}")
         print(f"Question: {result['question']}")
         print(f"{'='*60}")
+        
+        if not args.llm:
+            # Only print this if not using LLM (LLM mode prints its own output)
+            pass
 
         if result['status'] == 'error':
             print(f"\n❌ Error: {result['error']}")
