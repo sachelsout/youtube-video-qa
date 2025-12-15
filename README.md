@@ -1,7 +1,13 @@
 # YouTube Video Q&A System
 
+A sophisticated system that enables users to ask natural-language questions about YouTube video content. The system automatically extracts transcripts, processes them intelligently, and provides answers using both traditional keyword-based and advanced LLM-powered retrieval approaches.
+
 ## Overview
-This project builds a system that allows users to input a YouTube video URL and ask natural-language questions about its content. The system retrieves the video transcript, preprocesses it, and answers queries using both a keyword-based baseline and an improved LLM-powered retrieval model.
+This project demonstrates a comprehensive approach to video understanding by implementing and comparing two distinct QA methodologies:
+- **Baseline**: TF-IDF based keyword retrieval for lightweight, interpretable results
+- **Advanced**: Semantic embeddings + LLM for context-aware, coherent answers
+
+The system includes a modern web interface, comprehensive evaluation metrics, and detailed error analysis to understand system performance and limitations.
 
 ## Features
 - Automatic YouTube transcript extraction  
@@ -43,6 +49,10 @@ uvicorn src.interface.app:app --reload
 ```
 
 Then open `http://127.0.0.1:8000/` in your browser.
+
+<b>This is how the Youtube video QnA System looks like, once you enter the video URL.</b>
+
+![Working Demo Screenshot](docs/working_demo.png)
 
 ### Features
 
@@ -193,4 +203,26 @@ youtube-video-qa/
 - [Rohan Dawkhar](https://github.com/sachelsout)
 
 ## How to Run
-Detailed setup instructions will be added as implementation progresses.
+
+### Quick Start
+
+For detailed setup instructions including environment configuration, dependency installation, and development workflows, please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+To run the web interface:
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the server
+uvicorn src.interface.app:app --reload
+```
+
+Open `http://127.0.0.1:8000/` in your browser.
+
+## Contributing
+
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started, set up your development environment, and submit your changes.
+
+### Code of Conduct
+This is an open-source project. Please be respectful, inclusive, and collaborative in all interactions.
