@@ -50,6 +50,12 @@ uvicorn src.interface.app:app --reload
 
 Then open `http://127.0.0.1:8000/` in your browser.
 
+**Optional: For LLM-powered QA, you'll need an OpenRouter API key.** Get a free key at https://openrouter.ai/ and add it to your `.env` file:
+```bash
+OPENROUTER_API_KEY=sk-or-your-key-here
+```
+See [CONTRIBUTING.md](CONTRIBUTING.md#getting-an-openrouter-api-key) for detailed setup instructions.
+
 <b>This is how the Youtube video QnA System looks like, once you enter the video URL.</b>
 
 ![Working Demo Screenshot](docs/working_demo.png)

@@ -72,12 +72,45 @@ This installs:
 
 ### 3. Environment Configuration
 
-Create a `.env` file in the project root if needed for any API keys or configuration:
+Create a `.env` file in the project root to configure API keys and settings:
 
 ```bash
-# Example .env (adjust based on your setup)
-YOUTUBE_API_KEY=your_key_here
+# Example .env file
+OPENROUTER_API_KEY=your_key_here
 ```
+
+#### Getting an OpenRouter API Key
+
+The LLM-powered QA mode uses **OpenRouter**, which provides free access to various open-source LLMs. Here's how to set it up:
+
+1. **Visit OpenRouter** (https://openrouter.ai/)
+
+2. **Sign Up for Free**
+   - Click "Sign in" → "Sign up"
+   - Create an account using email or GitHub
+
+3. **Get Your API Key**
+   - After logging in, go to your account dashboard
+   - Navigate to "Keys" section (usually at https://openrouter.ai/keys)
+   - Click "Create Key" or view your existing API key
+   - Copy the key (starts with `sk-or-`)
+
+4. **Add to `.env` File**
+   ```bash
+   OPENROUTER_API_KEY=sk-or-your-key-here
+   ```
+
+5. **Verify It Works**
+   - The web interface will automatically use your key for LLM queries
+   - If it's not working, check that the `.env` file is in the project root and properly formatted
+
+**Why OpenRouter?**
+- Free tier with generous limits (often sufficient for development and testing)
+- Access to multiple open-source models (Llama, Mistral, etc.)
+- Simple API that works with existing integrations
+- No credit card required for free tier
+
+**Note:** Keep your API key private and never commit it to version control. The `.gitignore` file should already exclude `.env` files.
 
 ### 4. Verify Installation
 
