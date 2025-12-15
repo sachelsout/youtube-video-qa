@@ -1,0 +1,17 @@
+{
+  "evaluation_date": "C:\\Users\\rohan\\youtube-video-qa\\evaluation",
+  "total_videos": 4,
+  "total_questions": 25,
+  "baseline": {
+    "exact_match": 0.0,
+    "f1_score": 0.08089268089646992,
+    "rouge_l": 0.03661504499352078,
+    "description": "TF-IDF based keyword retrieval"
+  },
+  "llm": {
+    "exact_match": 0.04,
+    "f1_score": 0.3947453919458963,
+    "rouge_l": 0.30249745259377825,
+    "description": "Embedding-based retrieval + LLM generation"
+  }
+}

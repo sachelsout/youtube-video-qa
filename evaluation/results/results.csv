@@ -1,0 +1,134 @@
+video_id,question,gold_answer,baseline_answer,baseline_em,baseline_f1,baseline_rouge,llm_answer,llm_em,llm_f1,llm_rouge
+3MqYE2UuN24,Should you walk or run in the rain?,"You should run in the rain. Running minimizes the time you spend in the rain, which reduces your total wetness.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.12)On those cold, rainy days when you forget your rain jacket or umbrella and you want to stay as dry as possible… should you walk and spend more time in the rain? Or should you run, which means you'll be smashing into more raindrops from the side? Assuming you haven't been fully soaked yet and you aren't jumping into puddles, the answer is simple. As you move out of the way of one falling raindrop, you move into the",0,0.12790697674418602,0.042105263157894736,"You should run in the rain to stay as dry as possible.
+
+- The amount of rain hitting the top of you is constant, regardless of how fast you're going.
+- However, the faster you move, the less time you spend in the rain, minimizing exposure to rain from above.
+- Running means you'll spend less time in the rain overall, reducing the total amount of rain hitting you from the top.
+- The side rain you encounter depends on the distance traveled, not your speed.",0,0.3333333333333333,0.24444444444444444
+3MqYE2UuN24,What is the formula for total wetness?,Total wetness equals (wetness per second times time spent in rain) plus (wetness per meter times meters travelled).,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.29)the same amount of snow from a stretch of road regardless of the exact speed it drives. In the case of running through the rain, you can figure that out using parallelepipeds again. So over a given period of time, the same amount of rain will hit you from the top, regardless of how fast you're going. And over a given distance, you'll hit the same amount of rain from the side - again, regardless of how fast you're ",0,0.15277777777777776,0.08571428571428572,"<s> [OUT] The formula for total wetness is the wetness per second for rain from the top times the amount of time you spend in the rain, plus the wetness per meter for rain from the side times the number of meters you travel.",0,0.5641025641025641,0.5555555555555556
+3MqYE2UuN24,When will you stay the driest?,When standing still.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.11)on its slant, then no matter how fast you're moving horizontally the same amount of rain will land on top of you each second. Now, if you're not moving, the rain from the top is all you'll get. But if you ARE moving, you'll also run into raindrops from the side and you'll get wetter. So in any given second, you stay driest by standing still, and the faster you move the wetter you become. But if you're trying to ge",0,0.0303030303030303,0.011940298507462687,"You stay the driest if you are not moving, as you'll only get wet from the rain falling directly on top of you.
+
+- If you are moving, you will also encounter raindrops from the side, increasing your wetness
+- However, if your goal is to reach a specific destination, standing still won't help you get there",0,0.09302325581395349,0.07142857142857142
+3MqYE2UuN24,Why does time matter more than speed?,"Because the rain hitting you from above is constant per unit of time. The less time you spend in the rain, the less water hits you from above.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.11)on its slant, then no matter how fast you're moving horizontally the same amount of rain will land on top of you each second. Now, if you're not moving, the rain from the top is all you'll get. But if you ARE moving, you'll also run into raindrops from the side and you'll get wetter. So in any given second, you stay driest by standing still, and the faster you move the wetter you become. But if you're trying to ge",0,0.13402061855670103,0.05607476635514018,"Time matters more than speed because the total amount of rain you encounter from the top depends on how long you're in the rain, not your speed.
+
+- The amount of rain from the top is constant per second, regardless of how fast you move.
+- The faster you move, the more rain you encounter from the side, but the time spent in the rain decreases.
+- To minimize total wetness, you should aim to spend as little time as possible in the rain, which means moving as fast as possible.",0,0.34920634920634924,0.2549019607843137
+3MqYE2UuN24,What analogy is used to explain the side rain?,A snowplough analogy.,I couldn't find relevant information to answer this question.,0,0.0,0.0,"A snowplow is used to explain the side rain.
+
+- The snowplow analogy describes how the total amount of rain you encounter from the side is the same regardless of your speed, similar to how a snowplow clears the same amount of snow regardless of its speed.",0,0.07692307692307693,0.05
+3MqYE2UuN24,Does the volume of a parallelepiped depend on its slant?,"No, the volume of a parallelepiped does not depend on its slant.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.22)On those cold, rainy days when you forget your rain jacket or umbrella and you want to stay as dry as possible… should you walk and spend more time in the rain? Or should you run, which means you'll be smashing into more raindrops from the side? Assuming you haven't been fully soaked yet and you aren't jumping into puddles, the answer is simple. As you move out of the way of one falling raindrop, you move into the",0,0.10714285714285715,0.03753351206434317,"The volume of a parallelepiped does not depend on its slant.
+
+- The video explains that ""the volume of a parallelepiped (that's a 3D parallelogram) doesn't depend at all on its slant""
+- This property is used to illustrate that the same amount of rain will land on top of you each second, regardless of how fast you're moving horizontally",0,0.36000000000000004,0.28125
+3MqYE2UuN24,What happens when you move out of the way of one raindrop?,You move into the way of another raindrop.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.20)On those cold, rainy days when you forget your rain jacket or umbrella and you want to stay as dry as possible… should you walk and spend more time in the rain? Or should you run, which means you'll be smashing into more raindrops from the side? Assuming you haven't been fully soaked yet and you aren't jumping into puddles, the answer is simple. As you move out of the way of one falling raindrop, you move into the",0,0.11570247933884298,0.06217616580310881,"[OUT] When you move out of the way of one raindrop, you move into the way of another.
+
+- The amount of rain hitting the top of you is constant, regardless of how fast you're going
+- This is because the volume of a parallelepiped (a 3D parallelogram) doesn't depend on its slant",0,0.35,0.22641509433962262
+9eKc5kgPVrA,What happens when an unstoppable force meets an immovable object?,"According to relativity and physics, they are actually the same thing viewed from different reference frames, and they would pass through each other without interaction.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.36)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, relativity clearly tells us that there is no such thing as an immovable object here's why: If you pick any supposedly immovable object, or just something like your house or the earth, I can make it move. All I need to do is start to move relative to it, for example I might ride a rocket, and suddenly f",0,0.13008130081300812,0.04537521815008727,"If two infinitely massive, un-acceleratable objects (one moving and one stationary) collided, they would pass through each other with no effect on each other at all.
+- Such objects would have infinite mass and require infinite energy, making them theoretically impossible in the universe",0,0.2413793103448276,0.20895522388059704
+9eKc5kgPVrA,What is the principle of relativity?,"Because of relativity. There is no preferred frame of reference - if you move relative to an object, from your perspective the object is moving. Movement depends on the observer's perspective.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.16)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, relativity clearly tells us that there is no such thing as an immovable object here's why: If you pick any supposedly immovable object, or just something like your house or the earth, I can make it move. All I need to do is start to move relative to it, for example I might ride a rocket, and suddenly f",0,0.28985507246376807,0.15384615384615385,"The principle of relativity states that the laws of physics make no preference for inertial frame of reference.
+- From a moving frame of reference, an ""immovable object"" can appear to move",0,0.43478260869565216,0.2909090909090909
+9eKc5kgPVrA,What is Newton's second law mentioned in the video?,Force equals mass times acceleration F=MA. An object's acceleration equals the total force divided by its mass.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.14)MEAN by ""immovable object"" is something that if it's not moving, you can't make it start moving by Pushing on it. So, not an immovable object, but an ""un-acceleratable"" one. Using Newton's second law, we know that an object's acceleration is equal to the total force on it divided by its mass (though you've probably seen this as F=ma). So an ""un-acceleratable"" object would be an object with infinite mass; an object",0,0.0956521739130435,0.04914933837429112,"Newton's second law states that an object's acceleration is equal to the total force on it divided by its mass.
+
+- It is commonly represented as the equation F = ma.",0,0.5789473684210525,0.39999999999999997
+9eKc5kgPVrA,How much mass does an un-acceleratable object have?,An un-acceleratable object would have infinite mass.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.16)but my impression is that the phrase ""unstoppable force"" isn't really meant to imply anything about ""forces"" like electromagnetism or gravity, but rather, something that you cannot stop from barreling down on you. That is, an object whose velocity cannot be changed by pushing on it. So, IF by an unstoppable force we mean an object moving at a speed that can never be changed, then that means the object cannot accel",0,0.05687203791469194,0.023715415019762844,"An un-acceleratable object has infinite mass.
+
+- According to Newton's second law, this would result in zero acceleration, regardless of the force applied.",0,0.41379310344827586,0.3448275862068965
+9eKc5kgPVrA,Are unstoppable forces and immovable objects the same?,"Yes, they are the same thing viewed from different reference frames. Both are objects that cannot be accelerated.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.24)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, relativity clearly tells us that there is no such thing as an immovable object here's why: If you pick any supposedly immovable object, or just something like your house or the earth, I can make it move. All I need to do is start to move relative to it, for example I might ride a rocket, and suddenly f",0,0.10833333333333332,0.0353356890459364,"Unstoppable forces and immovable objects are essentially the same concept viewed from different reference frames.
+
+- An ""unstoppable force"" refers to an object whose velocity cannot be changed by pushing on it, meaning it cannot accelerate.
+- An ""immovable object"" (or ""un-acceleratable"" one) is something that, if not moving, cannot be made to start moving by pushing on it, also implying it cannot accelerate.
+- Both scenarios describe an object with infinite mass, where no matter the force applie",0,0.30769230769230765,0.18867924528301888
+9eKc5kgPVrA,What does relativity clearly tell us about immovable objects?,The principle of relativity tells us there is no such thing as an immovable object.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.30)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, relativity clearly tells us that there is no such thing as an immovable object here's why: If you pick any supposedly immovable object, or just something like your house or the earth, I can make it move. All I need to do is start to move relative to it, for example I might ride a rocket, and suddenly f",0,0.10434782608695653,0.04571428571428571,"Relativity clearly tells us that there is no such thing as an immovable object.
+
+- If you pick any supposedly immovable object, you can make it move by changing your own reference frame (e.g., riding a rocket).
+- The laws of physics have no preference for inertial frame of reference, so an object that seems immovable from one perspective can appear in motion from another.",0,0.39344262295081966,0.3013698630136986
+S9dqJRyk0YM,Why is pink not a real color?,Pink or magenta doesn't exist in the visible light spectrum. It's a mix of red and blue light.,,0,0.0,0.0,"Pink is not a real color because it is not a single wavelength of visible light like the other colors of the rainbow.
+- Pink is a mix of red and blue light
+- It is created by our brains perceiving red and blue light as one single color
+- In the visible light spectrum, there is a gap between red and blue where pink is placed",0,0.4313725490196078,0.23999999999999996
+S9dqJRyk0YM,What colors are in the visible spectrum?,"The visible spectrum contains red, orange, yellow, green, blue, indigo, and violet.",,0,0.0,0.0,"The visible spectrum consists of the colors red, orange, yellow, green, blue, and violet.
+
+- These colors correspond to different wavelengths of visible light.",0,0.6206896551724137,0.5625
+S9dqJRyk0YM,"If you roll up the color where, what is between red and violet?",A gap.,,0,0.0,0.0,"Pink is between red and violet.
+
+- This is because pink is a mix of red and blue light, and rolling up the rainbow creates a gap that is filled with pink
+- The gap represents all the light wavelengths we can't see, like radio waves, microwaves, and x-rays",0,0.05882352941176471,0.044444444444444446
+S9dqJRyk0YM,Why should pink be called minus-green?,Because pink is what happens when you take white light and take out the green.,,0,0.0,0.0,"Pink should be called ""minus-green"" because it is what remains when green is removed from white light.
+
+- Pink is a mix of red and blue light
+- It fills the gap between red and blue on the color wheel
+- Pink is essentially all the light except green",0,0.41860465116279066,0.2807017543859649
+S9dqJRyk0YM,What should pink be called?,Pink should be called minus-green.,,0,0.0,0.0,"Pink should be called ""minus-green"".
+
+- It’s what’s left over from white light when the green is removed
+- This is because pink is a mix of red and blue light, not a single wavelength",0,0.3636363636363636,0.3076923076923077
+pgqkti7yePk,How many blades do the vast majority of modern windmills have?,The vast majority of modern windmills have three blades.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.20)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of modern windmills have three blades. And there are three good reasons for that. The first reason for three blades comes from physics. All else being equal, the more blades a windmill has, the more torque it can generate. But also, the more drag it has, because each additional blade has to cut through the",0,0.06400000000000002,0.02831858407079646,The vast majority of modern windmills have three blades.,1,1.0,1.0
+pgqkti7yePk,Where does the first reason come from?,The first reason comes from physics.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.05)wrong wind conditions. This can lead to large forces pushing the pole to bend forwards or backwards or twist side to side. There are similar issues with other even numbers of blades, including for our purposes a single blade rotor since it only has a counterwe on the other side and nothing to balance the unequal wind forces. If the rotor has an odd number of blades like three or five, the fact that blades don't co",0,0.031007751937984492,0.01107011070110701,"The first reason comes from physics.
+
+- Physics says that three-blade rotors are most efficient
+- Efficiency is highest at intermediate speeds, corresponding to three blades",0,0.37037037037037035,0.3448275862068966
+pgqkti7yePk,What does adding more blades to a windmill do?,"Adding more blades allows the windmill to generate more torque, but also increases drag.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.11)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of modern windmills have three blades. And there are three good reasons for that. The first reason for three blades comes from physics. All else being equal, the more blades a windmill has, the more torque it can generate. But also, the more drag it has, because each additional blade has to cut through the",0,0.06792452830188679,0.032667876588021776,"<s> [BOOTSTRAP]
+Adding more blades to a windmill increases both torque and drag.
+
+- More blades generate more torque but also more drag, making them better at lower rotational speeds
+- Fewer blades generate less torque but also less drag, making them better at higher rotational speeds
+- The efficiency of a windmill depends on the number of blades and the rotational speed relative to the wind",0,0.4888888888888888,0.28169014084507044
+pgqkti7yePk,What speeds do many bladed windmills work better at?,Many bladed windmills work better at lower rotational speeds.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.38)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of modern windmills have three blades. And there are three good reasons for that. The first reason for three blades comes from physics. All else being equal, the more blades a windmill has, the more torque it can generate. But also, the more drag it has, because each additional blade has to cut through the",0,0.07171314741035857,0.03180212014134275,"Many bladed windmills work better at lower rotational speeds relative to wind speed.
+
+- All else being equal, the more blades a windmill has, the more torque it can generate, but also the more drag it has
+- As a result, many bladed windmills tend to work better at lower rotational speeds",0,0.45000000000000007,0.33333333333333337
+pgqkti7yePk,What speeds do fewer bladed windmills work better at?,Fewer bladed windmills work better at higher rotational speeds.,"Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.38)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of modern windmills have three blades. And there are three good reasons for that. The first reason for three blades comes from physics. All else being equal, the more blades a windmill has, the more torque it can generate. But also, the more drag it has, because each additional blade has to cut through the",0,0.07171314741035857,0.03180212014134275,"Fewer bladed windmills tend to work better at higher rotational speeds.
+
+- A windmill with fewer blades generates less torque and experiences less drag, making it more efficient at higher rotational speeds.
+- In contrast, windmills with more blades work better at lower rotational speeds relative to wind speed.",0,0.4615384615384615,0.32727272727272727
+pgqkti7yePk,What does having an odd number of blades do for windmills?,"Wind loads are more evenly distributed across the face of the rotor, bending forces are reduced as a result.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.22)wrong wind conditions. This can lead to large forces pushing the pole to bend forwards or backwards or twist side to side. There are similar issues with other even numbers of blades, including for our purposes a single blade rotor since it only has a counterwe on the other side and nothing to balance the unequal wind forces. If the rotor has an odd number of blades like three or five, the fact that blades don't co",0,0.0962962962962963,0.05063291139240506,"Having an odd number of blades in windmills helps distribute wind loads more evenly and reduces bending and twisting forces, making the turbines less prone to structural stress.
+
+- With an odd number of blades, wind loads are more evenly distributed across the rotor face
+- This greatly reduces the bending and twisting forces experienced by the turbine
+- Turbines with an odd number of blades (like three or five) avoid the unbalanced forces that can occur with even-numbered blades",0,0.3870967741935484,0.23255813953488372
+pgqkti7yePk,Why Do Wind Turbines Have Three Blades?,"Physics says that three blade rotors are most efficient, engineering says that for the same cost, three blades are less likely to brake than 2 blades, and human comfort says are not noisy.","Based on the transcript, here are the relevant sections:
+
+[00:00] (relevance: 0.10)the lower rotational speeds of turbines with more blades means that all the moving parts experience less wear over time. So to minimize unwanted twisting forces from the wind, we want an odd number of blades. And more blades cause less wear and tear, but more blades cost more money. If you took the blades from two fiveblade turbines, you'd have enough to make three three-blade turbines plus one left over. Taking a",0,0.16666666666666669,0.08040201005025126,"Wind turbines have three blades because they are more efficient and balanced compared to other designs.
+
+- **Physics**: Three-blade rotors achieve the highest efficiency at intermediate rotational speeds, balancing torque and drag.
+- **Engineering**: An odd number of blades (like three) distributes wind loads more evenly, reducing bending and twisting forces, and minimizes wear over time.
+- **Human Comfort**: Three-blade rotors are visually more pleasing and quieter than two-blade designs, makin",0,0.32098765432098764,0.18867924528301885
