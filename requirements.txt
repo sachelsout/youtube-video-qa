@@ -21,6 +21,7 @@ mypy>=1.4.0
 # Environment Variable Management
 python-dotenv
 python-multipart
+
 # Optional: Web interface demo
 fastapi>=0.95.0
 uvicorn>=0.22.0
