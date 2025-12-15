@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Transcribe Video</h2>
+<form action="/transcribe" method="post" enctype="multipart/form-data">
+    <label for="video">Upload Video:</label>
+    <input type="file" id="video" name="video" accept="video/*" required>
+    <button type="submit">Transcribe</button>
+</form>
+{% endblock %}

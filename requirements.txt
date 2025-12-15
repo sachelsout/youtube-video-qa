@@ -1,6 +1,9 @@
 # YouTube Transcript API
 youtube-transcript-api>=0.6.0
 
+# YouTube metadata fetching
+yt-dlp>=2023.0.0
+
 # Embeddings and Semantic Search
 sentence-transformers>=2.2.0
 numpy>=1.24.0
@@ -17,3 +20,9 @@ mypy>=1.4.0
 
 # Environment Variable Management
 python-dotenv
+python-multipart
+# Optional: Web interface demo
+fastapi>=0.95.0
+uvicorn>=0.22.0
+jinja2
+httpx

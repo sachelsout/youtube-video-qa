@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Ask a Question</h2>
+<form action="/ask" method="post">
+    <label for="question">Your Question:</label>
+    <input type="text" id="question" name="question" required>
+    <button type="submit">Ask</button>
+</form>
+{% endblock %}
