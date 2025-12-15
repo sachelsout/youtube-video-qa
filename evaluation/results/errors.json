@@ -1,0 +1,737 @@
+[
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "Should you walk or run in the rain?",
+    "gold_answer": "You should run in the rain. Running minimizes the time you spend in the rain, which reduces your total wetness.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.12)On those cold, rainy days when you forget your rain jacket or umbrella and you want to stay as dry as possible… shoul",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.12790697674418602,
+      "rouge_l": 0.042105263157894736
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "Should you walk or run in the rain?",
+    "gold_answer": "You should run in the rain. Running minimizes the time you spend in the rain, which reduces your total wetness.",
+    "model_answer": "You should run in the rain to stay as dry as possible.\n\n- The amount of rain hitting the top of you is constant, regardless of how fast you're going.\n- However, the faster you move, the less time you ",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.3333333333333333,
+      "rouge_l": 0.24444444444444444
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "What is the formula for total wetness?",
+    "gold_answer": "Total wetness equals (wetness per second times time spent in rain) plus (wetness per meter times meters travelled).",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.29)the same amount of snow from a stretch of road regardless of the exact speed it drives. In the case of running throug",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.15277777777777776,
+      "rouge_l": 0.08571428571428572
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "What is the formula for total wetness?",
+    "gold_answer": "Total wetness equals (wetness per second times time spent in rain) plus (wetness per meter times meters travelled).",
+    "model_answer": "<s> [OUT] The formula for total wetness is the wetness per second for rain from the top times the amount of time you spend in the rain, plus the wetness per meter for rain from the side times the numb",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.5641025641025641,
+      "rouge_l": 0.5555555555555556
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "When will you stay the driest?",
+    "gold_answer": "When standing still.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.11)on its slant, then no matter how fast you're moving horizontally the same amount of rain will land on top of you each",
+    "model_type": "baseline",
+    "error_type": "Semantic Mismatch",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0303030303030303,
+      "rouge_l": 0.011940298507462687
+    },
+    "explanation": "Returned irrelevant chunks with no semantic connection to question"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "When will you stay the driest?",
+    "gold_answer": "When standing still.",
+    "model_answer": "You stay the driest if you are not moving, as you'll only get wet from the rain falling directly on top of you.\n\n- If you are moving, you will also encounter raindrops from the side, increasing your w",
+    "model_type": "llm",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.09302325581395349,
+      "rouge_l": 0.07142857142857142
+    },
+    "explanation": "Answer missing significant information or concepts"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "Why does time matter more than speed?",
+    "gold_answer": "Because the rain hitting you from above is constant per unit of time. The less time you spend in the rain, the less water hits you from above.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.11)on its slant, then no matter how fast you're moving horizontally the same amount of rain will land on top of you each",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.13402061855670103,
+      "rouge_l": 0.05607476635514018
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "Why does time matter more than speed?",
+    "gold_answer": "Because the rain hitting you from above is constant per unit of time. The less time you spend in the rain, the less water hits you from above.",
+    "model_answer": "Time matters more than speed because the total amount of rain you encounter from the top depends on how long you're in the rain, not your speed.\n\n- The amount of rain from the top is constant per seco",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.34920634920634924,
+      "rouge_l": 0.2549019607843137
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "What analogy is used to explain the side rain?",
+    "gold_answer": "A snowplough analogy.",
+    "model_answer": "I couldn't find relevant information to answer this question.",
+    "model_type": "baseline",
+    "error_type": "Retrieval Failure",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    "explanation": "No relevant chunks found in transcript"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "What analogy is used to explain the side rain?",
+    "gold_answer": "A snowplough analogy.",
+    "model_answer": "A snowplow is used to explain the side rain.\n\n- The snowplow analogy describes how the total amount of rain you encounter from the side is the same regardless of your speed, similar to how a snowplow ",
+    "model_type": "llm",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.07692307692307693,
+      "rouge_l": 0.05
+    },
+    "explanation": "Answer missing significant information or concepts"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "Does the volume of a parallelepiped depend on its slant?",
+    "gold_answer": "No, the volume of a parallelepiped does not depend on its slant.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.22)On those cold, rainy days when you forget your rain jacket or umbrella and you want to stay as dry as possible… shoul",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.10714285714285715,
+      "rouge_l": 0.03753351206434317
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "Does the volume of a parallelepiped depend on its slant?",
+    "gold_answer": "No, the volume of a parallelepiped does not depend on its slant.",
+    "model_answer": "The volume of a parallelepiped does not depend on its slant.\n\n- The video explains that \"the volume of a parallelepiped (that's a 3D parallelogram) doesn't depend at all on its slant\"\n- This property ",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.36000000000000004,
+      "rouge_l": 0.28125
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "What happens when you move out of the way of one raindrop?",
+    "gold_answer": "You move into the way of another raindrop.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.20)On those cold, rainy days when you forget your rain jacket or umbrella and you want to stay as dry as possible… shoul",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.11570247933884298,
+      "rouge_l": 0.06217616580310881
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "3MqYE2UuN24",
+    "question": "What happens when you move out of the way of one raindrop?",
+    "gold_answer": "You move into the way of another raindrop.",
+    "model_answer": "[OUT] When you move out of the way of one raindrop, you move into the way of another.\n\n- The amount of rain hitting the top of you is constant, regardless of how fast you're going\n- This is because th",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.35,
+      "rouge_l": 0.22641509433962262
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What happens when an unstoppable force meets an immovable object?",
+    "gold_answer": "According to relativity and physics, they are actually the same thing viewed from different reference frames, and they would pass through each other without interaction.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.36)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, rel",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.13008130081300812,
+      "rouge_l": 0.04537521815008727
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What happens when an unstoppable force meets an immovable object?",
+    "gold_answer": "According to relativity and physics, they are actually the same thing viewed from different reference frames, and they would pass through each other without interaction.",
+    "model_answer": "If two infinitely massive, un-acceleratable objects (one moving and one stationary) collided, they would pass through each other with no effect on each other at all.\n- Such objects would have infinite",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.2413793103448276,
+      "rouge_l": 0.20895522388059704
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What is the principle of relativity?",
+    "gold_answer": "Because of relativity. There is no preferred frame of reference - if you move relative to an object, from your perspective the object is moving. Movement depends on the observer's perspective.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.16)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, rel",
+    "model_type": "baseline",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.28985507246376807,
+      "rouge_l": 0.15384615384615385
+    },
+    "explanation": "Answer contains relevant information but structured/worded differently"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What is the principle of relativity?",
+    "gold_answer": "Because of relativity. There is no preferred frame of reference - if you move relative to an object, from your perspective the object is moving. Movement depends on the observer's perspective.",
+    "model_answer": "The principle of relativity states that the laws of physics make no preference for inertial frame of reference.\n- From a moving frame of reference, an \"immovable object\" can appear to move",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.43478260869565216,
+      "rouge_l": 0.2909090909090909
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What is Newton's second law mentioned in the video?",
+    "gold_answer": "Force equals mass times acceleration F=MA. An object's acceleration equals the total force divided by its mass.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.14)MEAN by \"immovable object\" is something that if it's not moving, you can't make it start moving by Pushing on it. So,",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0956521739130435,
+      "rouge_l": 0.04914933837429112
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What is Newton's second law mentioned in the video?",
+    "gold_answer": "Force equals mass times acceleration F=MA. An object's acceleration equals the total force divided by its mass.",
+    "model_answer": "Newton's second law states that an object's acceleration is equal to the total force on it divided by its mass.\n\n- It is commonly represented as the equation F = ma.",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.5789473684210525,
+      "rouge_l": 0.39999999999999997
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "How much mass does an un-acceleratable object have?",
+    "gold_answer": "An un-acceleratable object would have infinite mass.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.16)but my impression is that the phrase \"unstoppable force\" isn't really meant to imply anything about \"forces\" like ele",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.05687203791469194,
+      "rouge_l": 0.023715415019762844
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "How much mass does an un-acceleratable object have?",
+    "gold_answer": "An un-acceleratable object would have infinite mass.",
+    "model_answer": "An un-acceleratable object has infinite mass.\n\n- According to Newton's second law, this would result in zero acceleration, regardless of the force applied.",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.41379310344827586,
+      "rouge_l": 0.3448275862068965
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "Are unstoppable forces and immovable objects the same?",
+    "gold_answer": "Yes, they are the same thing viewed from different reference frames. Both are objects that cannot be accelerated.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.24)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, rel",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.10833333333333332,
+      "rouge_l": 0.0353356890459364
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "Are unstoppable forces and immovable objects the same?",
+    "gold_answer": "Yes, they are the same thing viewed from different reference frames. Both are objects that cannot be accelerated.",
+    "model_answer": "Unstoppable forces and immovable objects are essentially the same concept viewed from different reference frames.\n\n- An \"unstoppable force\" refers to an object whose velocity cannot be changed by push",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.30769230769230765,
+      "rouge_l": 0.18867924528301888
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What does relativity clearly tell us about immovable objects?",
+    "gold_answer": "The principle of relativity tells us there is no such thing as an immovable object.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.30)What happens if an immovable object meets an unstoppable force? Is a popular question on the internet. Of course, rel",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.10434782608695653,
+      "rouge_l": 0.04571428571428571
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "9eKc5kgPVrA",
+    "question": "What does relativity clearly tell us about immovable objects?",
+    "gold_answer": "The principle of relativity tells us there is no such thing as an immovable object.",
+    "model_answer": "Relativity clearly tells us that there is no such thing as an immovable object.\n\n- If you pick any supposedly immovable object, you can make it move by changing your own reference frame (e.g., riding ",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.39344262295081966,
+      "rouge_l": 0.3013698630136986
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "Why is pink not a real color?",
+    "gold_answer": "Pink or magenta doesn't exist in the visible light spectrum. It's a mix of red and blue light.",
+    "model_answer": "",
+    "model_type": "baseline",
+    "error_type": "Retrieval Failure",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    "explanation": "No relevant chunks found in transcript"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "Why is pink not a real color?",
+    "gold_answer": "Pink or magenta doesn't exist in the visible light spectrum. It's a mix of red and blue light.",
+    "model_answer": "Pink is not a real color because it is not a single wavelength of visible light like the other colors of the rainbow.\n- Pink is a mix of red and blue light\n- It is created by our brains perceiving red",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.4313725490196078,
+      "rouge_l": 0.23999999999999996
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "What colors are in the visible spectrum?",
+    "gold_answer": "The visible spectrum contains red, orange, yellow, green, blue, indigo, and violet.",
+    "model_answer": "",
+    "model_type": "baseline",
+    "error_type": "Retrieval Failure",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    "explanation": "No relevant chunks found in transcript"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "What colors are in the visible spectrum?",
+    "gold_answer": "The visible spectrum contains red, orange, yellow, green, blue, indigo, and violet.",
+    "model_answer": "The visible spectrum consists of the colors red, orange, yellow, green, blue, and violet.\n\n- These colors correspond to different wavelengths of visible light.",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.6206896551724137,
+      "rouge_l": 0.5625
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "If you roll up the color where, what is between red and violet?",
+    "gold_answer": "A gap.",
+    "model_answer": "",
+    "model_type": "baseline",
+    "error_type": "Retrieval Failure",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    "explanation": "No relevant chunks found in transcript"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "If you roll up the color where, what is between red and violet?",
+    "gold_answer": "A gap.",
+    "model_answer": "Pink is between red and violet.\n\n- This is because pink is a mix of red and blue light, and rolling up the rainbow creates a gap that is filled with pink\n- The gap represents all the light wavelengths",
+    "model_type": "llm",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.05882352941176471,
+      "rouge_l": 0.044444444444444446
+    },
+    "explanation": "Answer missing significant information or concepts"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "Why should pink be called minus-green?",
+    "gold_answer": "Because pink is what happens when you take white light and take out the green.",
+    "model_answer": "",
+    "model_type": "baseline",
+    "error_type": "Retrieval Failure",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    "explanation": "No relevant chunks found in transcript"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "Why should pink be called minus-green?",
+    "gold_answer": "Because pink is what happens when you take white light and take out the green.",
+    "model_answer": "Pink should be called \"minus-green\" because it is what remains when green is removed from white light.\n\n- Pink is a mix of red and blue light\n- It fills the gap between red and blue on the color wheel",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.41860465116279066,
+      "rouge_l": 0.2807017543859649
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "What should pink be called?",
+    "gold_answer": "Pink should be called minus-green.",
+    "model_answer": "",
+    "model_type": "baseline",
+    "error_type": "Retrieval Failure",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0,
+      "rouge_l": 0.0
+    },
+    "explanation": "No relevant chunks found in transcript"
+  },
+  {
+    "video_id": "S9dqJRyk0YM",
+    "question": "What should pink be called?",
+    "gold_answer": "Pink should be called minus-green.",
+    "model_answer": "Pink should be called \"minus-green\".\n\n- It’s what’s left over from white light when the green is removed\n- This is because pink is a mix of red and blue light, not a single wavelength",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.3636363636363636,
+      "rouge_l": 0.3076923076923077
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "How many blades do the vast majority of modern windmills have?",
+    "gold_answer": "The vast majority of modern windmills have three blades.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.20)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of mode",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.06400000000000002,
+      "rouge_l": 0.02831858407079646
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "Where does the first reason come from?",
+    "gold_answer": "The first reason comes from physics.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.05)wrong wind conditions. This can lead to large forces pushing the pole to bend forwards or backwards or twist side to ",
+    "model_type": "baseline",
+    "error_type": "Semantic Mismatch",
+    "severity": "Critical",
+    "metrics": {
+      "em": 0,
+      "f1": 0.031007751937984492,
+      "rouge_l": 0.01107011070110701
+    },
+    "explanation": "Returned irrelevant chunks with no semantic connection to question"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "Where does the first reason come from?",
+    "gold_answer": "The first reason comes from physics.",
+    "model_answer": "The first reason comes from physics.\n\n- Physics says that three-blade rotors are most efficient\n- Efficiency is highest at intermediate speeds, corresponding to three blades",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.37037037037037035,
+      "rouge_l": 0.3448275862068966
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What does adding more blades to a windmill do?",
+    "gold_answer": "Adding more blades allows the windmill to generate more torque, but also increases drag.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.11)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of mode",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.06792452830188679,
+      "rouge_l": 0.032667876588021776
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What does adding more blades to a windmill do?",
+    "gold_answer": "Adding more blades allows the windmill to generate more torque, but also increases drag.",
+    "model_answer": "<s> [BOOTSTRAP]\nAdding more blades to a windmill increases both torque and drag.\n\n- More blades generate more torque but also more drag, making them better at lower rotational speeds\n- Fewer blades ge",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.4888888888888888,
+      "rouge_l": 0.28169014084507044
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What speeds do many bladed windmills work better at?",
+    "gold_answer": "Many bladed windmills work better at lower rotational speeds.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.38)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of mode",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.07171314741035857,
+      "rouge_l": 0.03180212014134275
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What speeds do many bladed windmills work better at?",
+    "gold_answer": "Many bladed windmills work better at lower rotational speeds.",
+    "model_answer": "Many bladed windmills work better at lower rotational speeds relative to wind speed.\n\n- All else being equal, the more blades a windmill has, the more torque it can generate, but also the more drag it",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.45000000000000007,
+      "rouge_l": 0.33333333333333337
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What speeds do fewer bladed windmills work better at?",
+    "gold_answer": "Fewer bladed windmills work better at higher rotational speeds.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.38)It's possible to build a wind turbine with two blades or five blades or even one blade, but the vast majority of mode",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.07171314741035857,
+      "rouge_l": 0.03180212014134275
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What speeds do fewer bladed windmills work better at?",
+    "gold_answer": "Fewer bladed windmills work better at higher rotational speeds.",
+    "model_answer": "Fewer bladed windmills tend to work better at higher rotational speeds.\n\n- A windmill with fewer blades generates less torque and experiences less drag, making it more efficient at higher rotational s",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.4615384615384615,
+      "rouge_l": 0.32727272727272727
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What does having an odd number of blades do for windmills?",
+    "gold_answer": "Wind loads are more evenly distributed across the face of the rotor, bending forces are reduced as a result.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.22)wrong wind conditions. This can lead to large forces pushing the pole to bend forwards or backwards or twist side to ",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.0962962962962963,
+      "rouge_l": 0.05063291139240506
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "What does having an odd number of blades do for windmills?",
+    "gold_answer": "Wind loads are more evenly distributed across the face of the rotor, bending forces are reduced as a result.",
+    "model_answer": "Having an odd number of blades in windmills helps distribute wind loads more evenly and reduces bending and twisting forces, making the turbines less prone to structural stress.\n\n- With an odd number ",
+    "model_type": "llm",
+    "error_type": "Hallucination",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.3870967741935484,
+      "rouge_l": 0.23255813953488372
+    },
+    "explanation": "LLM expanded answer significantly with potentially ungrounded information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "Why Do Wind Turbines Have Three Blades?",
+    "gold_answer": "Physics says that three blade rotors are most efficient, engineering says that for the same cost, three blades are less likely to brake than 2 blades, and human comfort says are not noisy.",
+    "model_answer": "Based on the transcript, here are the relevant sections:\n\n[00:00] (relevance: 0.10)the lower rotational speeds of turbines with more blades means that all the moving parts experience less wear over ti",
+    "model_type": "baseline",
+    "error_type": "Incomplete Answer",
+    "severity": "Major",
+    "metrics": {
+      "em": 0,
+      "f1": 0.16666666666666669,
+      "rouge_l": 0.08040201005025126
+    },
+    "explanation": "Returned related content but missing key information"
+  },
+  {
+    "video_id": "pgqkti7yePk",
+    "question": "Why Do Wind Turbines Have Three Blades?",
+    "gold_answer": "Physics says that three blade rotors are most efficient, engineering says that for the same cost, three blades are less likely to brake than 2 blades, and human comfort says are not noisy.",
+    "model_answer": "Wind turbines have three blades because they are more efficient and balanced compared to other designs.\n\n- **Physics**: Three-blade rotors achieve the highest efficiency at intermediate rotational spe",
+    "model_type": "llm",
+    "error_type": "Paraphrase Penalty",
+    "severity": "Minor",
+    "metrics": {
+      "em": 0,
+      "f1": 0.32098765432098764,
+      "rouge_l": 0.18867924528301885
+    },
+    "explanation": "Answer is semantically correct but worded differently from gold"
+  }
+]
