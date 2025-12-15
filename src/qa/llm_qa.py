@@ -78,10 +78,11 @@ def generate_answer(
     question: str,
     retrieved_chunks: List[Dict[str, Any]],
     llm_provider: str = "openrouter",
-    model: str = "google/gemini-2.0-flash-exp:free",
+    model: str = "mistralai/mistral-7b-instruct:free",
     temperature: float = 0.7,
     max_tokens: int = 500,
-    api_key: Optional[str] = None
+    api_key: Optional[str] = None,
+    history: Optional[List[Dict[str, str]]] = None,
 ) -> Dict[str, Any]:
     """
     Generate an answer using an LLM based on retrieved context.
@@ -100,10 +101,28 @@ def generate_answer(
     """
     # Format context
     context = format_context(retrieved_chunks)
-    
+
+    # Prepare conversation history if provided
+    history_text = ''
+    if history:
+        parts = []
+        for turn in history:
+            role = turn.get('role', 'user')
+            content = turn.get('content', '')
+            prefix = 'User' if role == 'user' else 'Assistant'
+            parts.append(f"{prefix}: {content}")
+        history_text = "\n".join(parts)
+
     # Load and format prompt
     template = load_prompt_template()
-    prompt = template.format(context=context, question=question)
+    # If the template expects a history placeholder, use it; otherwise prepend history
+    if '{history}' in template:
+        prompt = template.format(context=context, question=question, history=history_text)
+    else:
+        if history_text:
+            prompt = f"Conversation so far:\n{history_text}\n\n" + template.format(context=context, question=question)
+        else:
+            prompt = template.format(context=context, question=question)
     
     # Generate answer based on provider
     if llm_provider == "openrouter":
@@ -309,7 +328,7 @@ Examples:
     parser.add_argument('--provider', default='openrouter',
                        choices=['openrouter', 'openai', 'anthropic', 'ollama'],
                        help='LLM provider (default: openrouter)')
-    parser.add_argument('--model', default=None, help='Model name (default: google/gemini-2.0-flash-exp:free for OpenRouter)')
+    parser.add_argument('--model', default=None, help='Model name (default: mistralai/mistral-7b-instruct:free for OpenRouter)')
     parser.add_argument('--temperature', type=float, default=0.7, help='Sampling temperature (default: 0.7)')
     parser.add_argument('--max-tokens', type=int, default=500, help='Max tokens in response (default: 500)')
     parser.add_argument('--show-context', action='store_true', help='Show retrieved context')
@@ -319,7 +338,7 @@ Examples:
     # Set default model based on provider
     if args.model is None:
         if args.provider == 'openrouter':
-            args.model = 'google/gemini-2.0-flash-exp:free'  # Free tier
+            args.model = 'mistralai/mistral-7b-instruct:free'  # Free tier
         elif args.provider == 'openai':
             args.model = 'gpt-4o-mini'
         elif args.provider == 'anthropic':

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div id="setup-view" class="view active">
+        <div class="setup-card">
+            <h2>YouTube Video Q&A</h2>
+            <p>Enter a YouTube video URL to get started</p>
+            
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="videoUrl" 
+                    placeholder="Enter YouTube URL or Video ID"
+                    class="url-input"
+                >
+                <button id="transcribeBtn" class="btn btn-primary">Load Video</button>
+            </div>
+            
+            <div id="setupMessage" class="message hidden"></div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎯 Baseline Mode</h3>
+                    <p>Keyword-based retrieval using TF-IDF</p>
+                    <small>Fast and explainable</small>
+                </div>
+                <div class="feature-card">
+                    <h3>🧠 LLM Mode</h3>
+                    <p>Semantic search with embeddings and LLM</p>
+                    <small>More accurate and natural</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="chat-view" class="view">
+        <div class="chat-header">
+            <div class="video-info">
+                <div class="video-thumbnail-container">
+                    <img id="videoThumbnail" class="video-thumbnail" src="" alt="Video thumbnail">
+                    <span id="videoTitle" class="tooltip"></span>
+                </div>
+                <button id="changeVideoBtn" class="btn-new-video">🎬 New Video</button>
+            </div>
+            <div class="mode-selector">
+                <button id="modeBaseline" class="mode-btn active" data-mode="baseline">Baseline</button>
+                <button id="modeLLM" class="mode-btn" data-mode="llm">LLM</button>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+        </div>
+        
+        <div class="chat-input-area">
+            <div class="chunks-control">
+                <label for="chunksSlider">Chunks to retrieve: <span id="chunksValue">5</span></label>
+                <input 
+                    type="range" 
+                    id="chunksSlider" 
+                    min="1" 
+                    max="20" 
+                    value="5"
+                    class="chunks-slider"
+                >
+                <small>1 = Fast, 20 = Comprehensive</small>
+            </div>
+            <div class="input-group">
+                <textarea 
+                    id="questionInput" 
+                    placeholder="Ask a question about the video... (Shift+Enter for newline)"
+                    class="question-textarea"
+                ></textarea>
+                <button id="askBtn" class="btn btn-primary">Ask</button>
+            </div>
+            <small id="charCount">0 / 500</small>
+            <button id="clearBtn" class="btn-secondary">Clear Conversation</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
+{% endblock %}

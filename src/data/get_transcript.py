@@ -79,21 +79,150 @@ def get_transcript(video_url: str, languages: List[str] = ['en']) -> Dict:
     result['video_id'] = video_id
     
     try:
-        # Create API instance and fetch transcript (v1.2.x+)
-        ytt_api = YouTubeTranscriptApi()
-        fetched_transcript = ytt_api.fetch(video_id, languages=languages)
-        
-        # Extract snippets from FetchedTranscript object
-        result['transcript'] = [
-            {
-                'text': snippet.text,
-                'start': snippet.start,
-                'duration': snippet.duration
-            }
-            for snippet in fetched_transcript.snippets
-        ]
-        result['language'] = fetched_transcript.language_code
-        result['status'] = 'success'
+        import logging
+        logger = logging.getLogger(__name__)
+        # Try the straightforward fetch first
+        try:
+            ytt_api = YouTubeTranscriptApi()
+            fetched_transcript = ytt_api.fetch(video_id, languages=languages)
+
+            # Extract snippets from FetchedTranscript object (newer api)
+            try:
+                snippets = fetched_transcript.snippets
+                result['transcript'] = [
+                    {
+                        'text': snippet.text,
+                        'start': snippet.start,
+                        'duration': snippet.duration
+                    }
+                    for snippet in snippets
+                ]
+                result['language'] = fetched_transcript.language_code
+                result['status'] = 'success'
+                return result
+            except Exception:
+                # Older API returns a list of dicts
+                if isinstance(fetched_transcript, list):
+                    result['transcript'] = [
+                        {
+                            'text': s.get('text', ''),
+                            'start': s.get('start', 0),
+                            'duration': s.get('duration', 0)
+                        }
+                        for s in fetched_transcript
+                    ]
+                    # Try to detect language if available
+                    result['language'] = None
+                    result['status'] = 'success'
+                    return result
+                else:
+                    # Fallback to using module-level get_transcript
+                    pass
+
+        except NoTranscriptFound:
+            # Fall through to richer fallback logic below
+            pass
+
+        # Fallbacks for older/newer versions of youtube-transcript-api
+        # 1) Try get_transcript() which returns a list of dicts on many installations
+        try:
+            fetched = YouTubeTranscriptApi.get_transcript(video_id, languages=languages)
+            if isinstance(fetched, list) and fetched:
+                result['transcript'] = [
+                    {
+                        'text': s.get('text', ''),
+                        'start': s.get('start', 0),
+                        'duration': s.get('duration', 0)
+                    }
+                    for s in fetched
+                ]
+                result['language'] = None
+                result['status'] = 'success'
+                logger.info(f"get_transcript: fetched with get_transcript(video_id, languages={languages}) - {len(result['transcript'])} segments")
+                return result
+        except Exception:
+            # continue to next fallback
+            pass
+        # Additional fallback: try get_transcript without languages to fetch any available transcript
+        try:
+            fetched_any = YouTubeTranscriptApi.get_transcript(video_id)
+            if isinstance(fetched_any, list) and fetched_any:
+                result['transcript'] = [
+                    {
+                        'text': s.get('text', ''),
+                        'start': s.get('start', 0),
+                        'duration': s.get('duration', 0)
+                    }
+                    for s in fetched_any
+                ]
+                result['language'] = None
+                result['status'] = 'success'
+                logger.info(f"get_transcript: fetched with get_transcript(video_id) - {len(result['transcript'])} segments")
+                return result
+        except Exception:
+            pass
+
+        # 2) If available, try list_transcripts (newer API). If not available, give a helpful error.
+        try:
+            if not hasattr(YouTubeTranscriptApi, 'list_transcripts'):
+                raise AttributeError("youtube-transcript-api too old: no list_transcripts()")
+
+            transcripts = YouTubeTranscriptApi.list_transcripts(video_id)
+
+            # Prefer English manual, then English generated, else pick first available
+            candidate = None
+            try:
+                candidate = transcripts.find_manually_created_transcript(languages)
+            except Exception:
+                try:
+                    candidate = transcripts.find_generated_transcript(languages)
+                except Exception:
+                    # pick first manually created or generated transcript
+                    try:
+                        candidate = transcripts.manually_created_transcripts[0]
+                    except Exception:
+                        try:
+                            candidate = transcripts.generated_transcripts[0]
+                        except Exception:
+                            candidate = None
+
+            if candidate is not None:
+                fetched = candidate.fetch()
+                # fetched is typically a list of dicts
+                result['transcript'] = [
+                    {
+                        'text': s.get('text', ''),
+                        'start': s.get('start', 0),
+                        'duration': s.get('duration', 0)
+                    }
+                    for s in fetched
+                ]
+                # candidate may have language_code attribute
+                result['language'] = getattr(candidate, 'language_code', None)
+                result['status'] = 'success'
+                logger.info(f"get_transcript: fetched with list_transcripts candidate - {len(result['transcript'])} segments")
+                return result
+
+            # If we didn't find any candidate transcripts, return a clear error
+            result['error'] = "No transcript found for the requested language or available transcripts"
+            return result
+        except AttributeError as ae:
+            # The installed youtube-transcript-api is likely too old — return guidance to upgrade
+            try:
+                ver = __import__('youtube_transcript_api').__version__
+            except Exception:
+                ver = 'unknown'
+
+            result['error'] = (
+                f"Transcript retrieval error: {str(ae)}. Detected youtube-transcript-api version: {ver}. "
+                "Ensure you upgraded the package in the same Python environment that runs the server. "
+                "Try: pip install -U youtube-transcript-api"
+            )
+            return result
+        except Exception as e:
+            # If list_transcripts or processing failed unexpectedly, return the error
+            result['error'] = f"Transcript retrieval error: {str(e)}"
+            return result
         
     except TranscriptsDisabled:
         result['error'] = "Transcripts are disabled for this video"
