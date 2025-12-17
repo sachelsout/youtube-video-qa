@@ -211,6 +211,9 @@ youtube-video-qa/
 ## Video Presentation
 - https://youtu.be/zEiSVOZIPOg
 
+## Project Report
+- [MSML641 Final Project Report](docs/MSML641%20Final%20Project%20Report.pdf)
+
 ## How to Run
 
 ### Quick Start
